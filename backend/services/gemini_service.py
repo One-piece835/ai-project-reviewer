@@ -2,6 +2,7 @@ import os
 import json
 from dotenv import load_dotenv
 from google import genai
+import time
 
 load_dotenv()
 
@@ -116,11 +117,27 @@ def review_project_with_ai(
     #     prompt
     # )
     # print("After Gemini")
+    for attempt in range(3):
 
-    response = client.models.generate_content(
-    model="gemini-2.5-flash",
-    contents=prompt
-)
+        try:
+
+            response = client.models.generate_content(
+                model="gemini-2.5-flash",
+                contents=prompt
+            )
+
+            break
+
+        except Exception as e:
+
+            if attempt < 2:
+                print(
+            f"Gemini Attempt {attempt + 1} Failed: {e}"
+        )
+                time.sleep(2)
+            else:
+
+                raise e
 
     response_text = response.text
 

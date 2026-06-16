@@ -25,6 +25,13 @@ def github_get(url):
 
 def extract_repo_info(repo_url):
 
+    parsed_url = urlparse(repo_url)
+
+    if "github.com" not in parsed_url.netloc:
+        raise ValueError(
+            "Please provide a valid GitHub repository URL"
+        )
+
     path_parts = urlparse(repo_url).path.strip("/").split("/")
 
     if len(path_parts) < 2:
