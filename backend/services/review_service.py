@@ -104,20 +104,6 @@ def generate_project_review(repo_url):
             file_contents
         )
 
-        print("File content length:", len(file_contents))
-
-#         ai_review = {
-#     "overall_score": 85,
-#     "project_summary": "Test Review",
-#     "strengths": [
-#         "Good project structure"
-#     ],
-#     "problems_found": [],
-#     "improvements": [],
-#     "resume_advice": [],
-#     "next_version_suggestions": []
-# }
-
         return {
             "success": True,
             "repository": repo_url,

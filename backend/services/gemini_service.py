@@ -107,28 +107,14 @@ def review_project_with_ai(
         - Do NOT return any text before or after the JSON.
         - Return ONLY the JSON object.
         """
-
-    print("Prompt length:", len(prompt))
-    # model = genai.GenerativeModel(
-    # "gemini-2.5-flash"
-    # )
-
-    # print("Before Gemini")
-    # response = model.generate_content(
-    #     prompt
-    # )
-    # print("After Gemini")
+    
     for attempt in range(3):
 
         try:
-            print("Before Gemini")
             response = client.models.generate_content(
                 model="gemini-2.5-flash",
                 contents=prompt
             )
-
-
-            print("After Gemini")
 
             break
 
