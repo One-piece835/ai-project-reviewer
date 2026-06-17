@@ -104,6 +104,8 @@ def generate_project_review(repo_url):
             file_contents
         )
 
+        print("File content length:", len(file_contents))
+
 #         ai_review = {
 #     "overall_score": 85,
 #     "project_summary": "Test Review",

@@ -20,94 +20,95 @@ def review_project_with_ai(
 ):
 
     prompt = f"""
-    # ROLE
-    You are a strict but helpful Senior Software Engineer, code reviewer, and mentor.
+        # ROLE
+        You are a strict but helpful Senior Software Engineer, code reviewer, and mentor.
 
-   Your job is to review a GitHub project as if you were reviewing a candidate's portfolio project before hiring them.
+        Your job is to review a GitHub project as if you were reviewing a candidate's portfolio project before hiring them.
 
-    Use the provided project context, README, package/dependency files, and sampled code files as evidence.
-    Do not guess. If something is missing, say it is missing.
+        Use the provided project context, README, package/dependency files, and sampled code files as evidence.
+        Do not guess. If something is missing, say it is missing.
 
-    # REVIEW CRITERIA
+        # REVIEW CRITERIA
 
-    Analyze the project based on:
-    - Code Quality
-    - Project Structure
-    - Readability
-    - Component Design
-    - Maintainability
-    - Scalability
-    - Error Handling
-    - Best Practices
-    - Documentation Quality
-    - Resume Value
+        Analyze the project based on:
+        - Code Quality
+        - Project Structure
+        - Readability
+        - Component Design
+        - Maintainability
+        - Scalability
+        - Error Handling
+        - Best Practices
+        - Documentation Quality
+        - Resume Value
 
-    # SCORING RULES
+        # SCORING RULES
 
-    - Give an overall score between 0 and 100.
-    - Base the score only on the provided evidence.
-    - Mention specific file names whenever possible.
-    - Do not invent project features.
-    - Do not assume technologies that are not present.
-    - Penalize missing documentation and poor code quality.
-    - Reward clean architecture and good coding practices.
+        - Give an overall score between 0 and 100.
+        - Base the score only on the provided evidence.
+        - Mention specific file names whenever possible.
+        - Do not invent project features.
+        - Do not assume technologies that are not present.
+        - Penalize missing documentation and poor code quality.
+        - Reward clean architecture and good coding practices.
 
-    # PROJECT INFORMATION
-    {project_context}
+        # PROJECT INFORMATION
+        {project_context}
 
-    # README
-    {readme["content"][:3000] if readme["found"] else "README not found"}
+        # README
+        {readme["content"][:3000] if readme["found"] else "README not found"}
 
-    # TECHNOLOGIES DETECTED
+        # TECHNOLOGIES DETECTED
 
-    {technologies}
+        {technologies}
 
-    # CODE FILES
-    {file_contents}
+        # CODE FILES
+        {file_contents}
 
-    # REVIEW REQUIREMENTS
+        # REVIEW REQUIREMENTS
 
-    When reviewing:
+        When reviewing:
 
-    - Mention strengths backed by evidence.
-    - Identify real problems found in the code.
-    - Explain why each problem matters.
-    - Provide actionable improvements.
-    - Suggest features that could improve the project.
-    - Provide resume advice for the developer.
-    - Mention file names when discussing code issues.
+        - Mention strengths backed by evidence.
+        - Identify real problems found in the code.
+        - Explain why each problem matters.
+        - Provide actionable improvements.
+        - Suggest features that could improve the project.
+        - Provide resume advice for the developer.
+        - Mention file names when discussing code issues.
 
-    # RESPONSE FORMAT
+        # RESPONSE FORMAT
 
-    Return ONLY valid JSON.
+        Return ONLY valid JSON.
 
-    {{
-        "overall_score": 0,
-        "project_summary": "",
-        "strengths": [],
-        "problems_found": [
-            {{
-                "problem": "",
-                "why_it_matters": "",
-                "suggestion": "",
-                "example_fix": ""
-            }}
-        ],
-        "improvements": [],
-        "resume_advice": [],
-        "next_version_suggestions": []
-    }}
+        {{
+            "overall_score": 0,
+            "project_summary": "",
+            "strengths": [],
+            "problems_found": [
+                {{
+                    "problem": "",
+                    "why_it_matters": "",
+                    "suggestion": "",
+                    "example_fix": ""
+                }}
+            ],
+            "improvements": [],
+            "resume_advice": [],
+            "next_version_suggestions": []
+        }}
 
 
-    # IMPORTANT
+        # IMPORTANT
 
-    - Do NOT return markdown.
-    - Do NOT return code fences.
-    - Do NOT return explanations outside JSON.
-    - Do NOT return any text before or after the JSON.
-    - Return ONLY the JSON object.
-    """
+        - Do NOT return markdown.
+        - Do NOT return code fences.
+        - Do NOT return explanations outside JSON.
+        - Do NOT return any text before or after the JSON.
+        - Return ONLY the JSON object.
+        """
 
+    print("Prompt length:", len(prompt))
     # model = genai.GenerativeModel(
     # "gemini-2.5-flash"
     # )
