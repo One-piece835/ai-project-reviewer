@@ -41,7 +41,7 @@ const handleRetry = () => {
   return (
     <div className="w-full min-h-screen flex flex-col bg-[#020817]">
       <Navbar />
-      <RepositoryForm onAnalyze={handleAnalyze} />
+      <RepositoryForm onAnalyze={handleAnalyze} loading={loading}  />
       {loading && (
   <div className="bg-white rounded-xl shadow-md p-6 text-center">
     <h3 className="text-xl font-semibold">

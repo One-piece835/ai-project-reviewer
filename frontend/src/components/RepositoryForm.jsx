@@ -1,13 +1,11 @@
 import { useState } from "react";
 
-const RepositoryForm = ({ onAnalyze }) => {
+const RepositoryForm = ({ onAnalyze, loading }) => {
 
-  const [loading, setLoading] = useState(false);
   const [repoUrl, setRepoUrl] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    setLoading(true);
     onAnalyze(repoUrl);
 };
 
@@ -21,7 +19,9 @@ const RepositoryForm = ({ onAnalyze }) => {
           onChange={(e) => setRepoUrl(e.target.value)}
           className="border-2 border-slate-700 text-white rounded-2xl p-2 w-full max-w-md focus:outline-none focus:border-cyan-500"
         />
-        <button disabled={loading} type="submit" className="bg-cyan-600 hover:bg-cyan-500 text-white px-4 py-2 rounded-2xl font-medium font-mono text-lg">Analyze Project</button>
+        <button  type="submit" className="bg-cyan-600 hover:bg-cyan-500 text-white px-4 py-2 rounded-2xl font-medium font-mono text-lg" disabled={loading}>
+          {loading ? "Analyzing..." : "Analyze Project"}
+        </button>
       </form>
     </div>
   );
