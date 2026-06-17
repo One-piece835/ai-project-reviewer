@@ -12,8 +12,6 @@ export const reviewProject = async (repoUrl) => {
     }
   );
 
-  console.log("API Response:", response.data); // Log the entire response data for debugging
-
   return response.data;
 };
 

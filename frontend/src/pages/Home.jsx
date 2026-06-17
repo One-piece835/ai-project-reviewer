@@ -10,10 +10,8 @@ const Home = () => {
   const [review, setReview] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [lastRepoUrl, setLastRepoUrl] = useState("");
 
   const handleAnalyze = async (repoUrl) => {
-    // console.log(repoUrl);
     setLoading(true);
     setError("");
     setReview(null);
@@ -32,42 +30,25 @@ const Home = () => {
 }
 };
 
-const handleRetry = () => {
-  if (lastRepoUrl) {
-    handleAnalyze(lastRepoUrl);
-  }
-};
-
   return (
     <div className="w-full min-h-screen flex flex-col bg-[#020817]">
       <Navbar />
       <RepositoryForm onAnalyze={handleAnalyze} loading={loading}  />
       {loading && (
-  <div className="bg-white rounded-xl shadow-md p-6 text-center">
-    <h3 className="text-xl font-semibold">
-      Analyzing Repository...
-    </h3>
-
-    <p className="text-gray-500 mt-2">
-      This may take up to 1 minute.
-    </p>
-  </div>
-)}
+        <div className="bg-white mx-auto rounded-xl max-w-md shadow-md p-3 text-center">
+          <p className="text-gray-800 font-semibold">
+            This may take up to 1 minute.
+          </p>
+        </div>
+      )}
       {error && ( 
     <div className="text-center space-y-4">
     <p className="text-red-500 font-medium">
       {error}
     </p>
-
-    <button
-      onClick={handleRetry}
-      className="bg-cyan-600 hover:bg-cyan-500 text-white px-4 py-2 rounded-lg"
-    >
-      Retry Analysis
-    </button>
   </div>
 )}
-      {review && (
+    {review && (
     <ReviewResult review={review} />
 )}
 
